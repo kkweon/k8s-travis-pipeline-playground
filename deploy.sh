@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo "SHA=$SHA"
+
 docker build                  \
 -t kkweon/multi-client:latest \
 -t kkweon/multi-client:$SHA   \
