@@ -19,7 +19,7 @@ before_install:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker build -t kkweon/react-test -f ./client/Dockerfile.dev ./client
 script:
-- docker run -e CI=true kkweon/docker-react npm run test
+- docker run -e CI=true kkweon/react-test npm run test
 deploy:
   provider: script
   script: bash ./deploy.sh
