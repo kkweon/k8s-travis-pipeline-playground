@@ -1,4 +1,9 @@
 sudo: required
+env:
+  global:
+  - SHA=$(git rev-parse HEAD)
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  - secure: G/DF6At4d4x103YfwLtUqvi+WfNm2NFNGcBgcPoh0E1awupa2EW3LhAooFCLMoPZlhD14eqKoi/bEyJ9NhXfi72NQvwYwh+uS+0bKo+NHE/TsMssjE+NrosgslbizJdzneCGTgg+awA7S4bd91/nXuKFqD1q1g4xhU5o5Y2Ah2mmKoW9nuXYQF1EWskwRI7QtuwyDsEWdDvdscEQn6MdSJse9pG4T1GIu/rcvjpZXdFenCkr+zET93NhPExWS9zHNFCtln1Jjv89G/SUHIF9ixS1ImlU066YlysTRp/OwjuJ2uJlxIpAbzY+HSg+El4S3lHomJ9bgACWSyD36cJeiOrIVHtAf+//lWr62pTS/tZCigNN2dbNDFk7z+jXFB+eSMJHXtwHNeCy7n4bXW5M0/dXx0XDO34zrtXmEreanduzehrZOZve8wRx4lTU+FeTqZpc5rYhsXIRrhJd+iC4NQ8OwNhgrm93tya3Lt3K/3DbqphrY9e03AozWCkNWMpjjzY7aBgdBHV2zCcWZkK2VScLOzILj5SyqPdsSE6Cr21nXVbzK9xFQ5Uk1xO5xkb16Dx2uB91ETVD2fxYSRBuDlRtG/Np6xXZsO67Q+xv7eJmIJ9+upv2einyq7Hoc3zeb6Cw7yssdv5D4A7ExRKtvtM1qMxNMmoX+XHSEqIiDO0=
 services:
 - docker
 before_install:
@@ -15,9 +20,6 @@ before_install:
 - docker build -t kkweon/react-test -f ./client/Dockerfile.dev ./client
 script:
 - docker run -e CI=true kkweon/docker-react npm run test
-env:
-  global:
-    secure: uYcj3lfhWjOvIaXayq7WXbkraor/EqYjR6uGLJa8YpSN3+mO+To2Ob92kdSH+vD6txEEOdTI6N7dMMbEo4ulAREqrUmieD9rTIyG5X7To8Fss3IBhYAJgE0PVSQiO75WCI2+x2QrTzrTWUnhq4HEzEdYL+aTzVpW5wQTWrLonQ5ihqP3VOson1JaRkHg+6tZlyDYuMnjymEUusmiPdYlsCxStTOCltXqIALNywc01iZwN1Id+BHDUkw0I71bsHSAOaUHk8G/5f46vByQTSkhapzQ6tdOgsz+81Sjpv89pXCTO6XG0fVPs3n5JLz3HAgN/jgkmPOi32NPVIkWab1Jod3krPB50jcYnpq/YsDMbCIrALvGVkJ2v5Rd+o3tj+Tp0weYOjpi/K6BipBm0LQTZU0gJM3raAx8tAo1ugyK6Eu08B7vE5IFYRqNQf1sz6jnCAgOsk244NpROuQnTxlR+/MVZEnE4AxLcRCQOygwNSA663fpg7GolWZWVE+B3UFKA9FsN1QDpxZyxzIIN3CMsGTakRiHc3mH/gK5kNVfWeQHyAtIU657aHVx1/xmUTuf4UZyXNQVm5zMpoFo/KFqutPIe80xV+Ndi77wd47DG+szaE+hwQvkvvWHEpb2F3ggyJMB0gmNZqJF0OtL8oixif9bmjAFBb6PuX6MvRmiTWs=
 deploy:
   provider: script
   script: bash ./deploy.sh
