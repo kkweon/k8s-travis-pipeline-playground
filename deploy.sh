@@ -22,7 +22,7 @@ docker push kkweon/multi-client:$SHA
 docker push kkweon/multi-server:$SHA
 docker push kkweon/multi-worker:$SHA
 
-kubectl apply -f k8s:$SHA
+kubectl apply -f k8s
 kubectl set image deployments/client-deployment client=kkweon/multi-client:$SHA
 kubectl set image deployments/server-deployment server=kkweon/multi-server:$SHA
 kubectl set image deployments/worker-deployment worker=kkweon/multi-worker:$SHA
