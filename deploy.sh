@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
-GIT_SHA=$(git rev-parse HEAD)
-docker build                    \
--t kkweon/multi-client:latest   \
--t kkweon/multi-client:$GIT_SHA \
+docker build                  \
+-t kkweon/multi-client:latest \
+-t kkweon/multi-client:$SHA   \
 -f ./client/Dockerfile ./client
-docker build                    \
--t kkweon/multi-server:latest   \
--t kkweon/multi-server:$GIT_SHA \
+docker build                  \
+-t kkweon/multi-server:latest \
+-t kkweon/multi-server:$SHA   \
 -f ./server/Dockerfile ./server
-docker build                    \
--t kkweon/multi-worker:latest   \
--t kkweon/multi-worker:$GIT_SHA \
+docker build                  \
+-t kkweon/multi-worker:latest \
+-t kkweon/multi-worker:$SHA   \
 -f ./worker/Dockerfile ./worker
 
-docker push kkweon/multi-client
-docker push kkweon/multi-server
-docker push kkweon/multi-worker
+docker push kkweon/multi-client:latest
+docker push kkweon/multi-server:latest
+docker push kkweon/multi-worker:latest
 
-kubectl apply -f k8s
-kubectl set image deployments/server-deployment server=kkweon/multi-server
+docker push kkweon/multi-client:$SHA
+docker push kkweon/multi-server:$SHA
+docker push kkweon/multi-worker:$SHA
+
+kubectl apply -f k8s:$SHA
+kubectl set image deployments/server-deployment server=kkweon/multi-server:$SHA
