@@ -1,0 +1,27 @@
+apiVersion: skaffold/v2alpha4
+kind: Config
+metadata:
+  name: docker-and-k-s
+build:
+  artifacts:
+  - image: stephengrider/multi-client
+    context: client
+  - image: stephengrider/multi-server
+    context: server
+  - image: stephengrider/multi-worker
+    context: worker
+deploy:
+  kubectl:
+    manifests:
+    - k8s/client-cluster-ip-service.yaml
+    - k8s/client-deployment.yaml
+    - k8s/ingress-service.yaml
+    - k8s/postgres-cluster-ip-service.yaml
+    - k8s/postgres-deployment.yaml
+    - k8s/postgres-secret.yaml
+    - k8s/postgres-pvc.yaml
+    - k8s/redis-cluster-ip-service.yaml
+    - k8s/redis-stateful-set.yaml
+    - k8s/server-cluster-ip-service.yaml
+    - k8s/server-deployment.yaml
+    - k8s/worker-deployment.yaml
