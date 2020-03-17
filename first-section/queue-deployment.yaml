@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fleetman-queue
+  labels:
+    app: fleetman-queue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fleetman-queue
+  template:
+    metadata:
+      labels:
+        app: fleetman-queue
+    spec:
+      containers:
+      - name: flletman-queue
+        image: richardchesterwood/k8s-fleetman-queue:release1
+        ports:
+          - containerPort: 8161
+          - containerPort: 61616
+
