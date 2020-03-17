@@ -15,7 +15,7 @@ spec:
         app: webapp
     spec:
       containers:
-        - image: richardchesterwood/k8s-fleetman-webapp-angular:release1
+        - image: richardchesterwood/k8s-fleetman-webapp-angular:release2
           name: webapp
           ports:
             - containerPort: 80

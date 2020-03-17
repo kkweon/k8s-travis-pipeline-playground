@@ -15,7 +15,7 @@ spec:
         app: fleetman-position-tracker
     spec:
       containers:
-      - image: richardchesterwood/k8s-fleetman-position-tracker:release1
+      - image: richardchesterwood/k8s-fleetman-position-tracker:release2
         name: k8s-fleetman-position-tracker
         ports:
           - containerPort: 8080
