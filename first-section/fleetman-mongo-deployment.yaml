@@ -22,3 +22,15 @@ spec:
         envFrom:
           - secretRef:
               name: fleetman-mongodb-secret
+        volumeMounts:
+          - name: mongo-persistent-storage
+            mountPath: /data/db
+      volumes:
+        - name: mongo-persistent-storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc
+          #hostPath:
+            #path: /mnt/some-directory/mongodb
+            #type: DirectoryOrCreate
+
+
