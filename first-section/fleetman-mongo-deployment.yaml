@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: fleetman-mongo
-  name: fleetman-mongo
+    app: fleetman-mongodb
+  name: fleetman-mongodb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fleetman-mongo
+      app: fleetman-mongodb
   template:
     metadata:
       labels:
-        app: fleetman-mongo
+        app: fleetman-mongodb
     spec:
       containers:
       - image: mongo:3.6
@@ -21,4 +21,4 @@ spec:
           - containerPort: 27017
         envFrom:
           - secretRef:
-              name: fleetman-mongo-secret
+              name: fleetman-mongodb-secret
