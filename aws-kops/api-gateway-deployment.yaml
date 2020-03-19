@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fleetman-api-gateway
+  name: fleetman-api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fleetman-api-gateway
+  template:
+    metadata:
+      labels:
+        app: fleetman-api-gateway
+    spec:
+      containers:
+        - image: richardchesterwood/k8s-fleetman-api-gateway:release2
+          name: k8s-fleetman-api-gateway
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: production-microservice
