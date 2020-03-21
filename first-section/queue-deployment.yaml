@@ -20,4 +20,10 @@ spec:
         ports:
           - containerPort: 8161
           - containerPort: 61616
-
+        resources:
+          requests:
+            memory: 300Mi
+            cpu: 100m
+          limits:
+            memory: 500Mi
+            cpu: 200m
