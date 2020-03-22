@@ -20,8 +20,14 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "production-microservice"
+          volumeMounts:
+            - name: database-config
+              mountPath: /etc/any/directory/config
           resources:
             requests:
               cpu: 40m
               memory: 200Mi
-
+      volumes:
+        - name: database-config
+          configMap:
+            name: global-database-config-v1

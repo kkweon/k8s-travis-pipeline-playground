@@ -29,8 +29,3 @@ spec:
         - name: mongo-persistent-storage
           persistentVolumeClaim:
             claimName: mongo-pvc
-          #hostPath:
-            #path: /mnt/some-directory/mongodb
-            #type: DirectoryOrCreate
-
-

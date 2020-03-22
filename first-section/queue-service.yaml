@@ -12,5 +12,3 @@ spec:
 
   selector:
     app: fleetman-queue
-
-  type: NodePort
