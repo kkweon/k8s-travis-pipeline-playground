@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
       - name: flletman-queue
-        image: richardchesterwood/k8s-fleetman-queue:release2
+        image: richardchesterwood/k8s-fleetman-queue:resources
         ports:
           - containerPort: 8161
           - containerPort: 61616
         resources:
           requests:
+            cpu: 50m
             memory: 300Mi
-            cpu: 100m
           limits:
             memory: 500Mi
             cpu: 200m

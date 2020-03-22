@@ -15,10 +15,19 @@ spec:
         app: fleetman-api-gateway
     spec:
       containers:
-        - image: richardchesterwood/k8s-fleetman-api-gateway:release2
+        - image: richardchesterwood/k8s-fleetman-api-gateway:performance
           name: k8s-fleetman-api-gateway
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: production-microservice
+          resources:
+            requests:
+              cpu: 50m
+              memory: 200Mi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http

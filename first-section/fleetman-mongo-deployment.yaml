@@ -25,6 +25,10 @@ spec:
         volumeMounts:
           - name: mongo-persistent-storage
             mountPath: /data/db
+        resources:
+          requests:
+            cpu: 10m
+            memory: 400Mi
       volumes:
         - name: mongo-persistent-storage
           persistentVolumeClaim:
